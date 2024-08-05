@@ -1,4 +1,4 @@
-import { ArtItem } from '../types/name';
+import { ArtItem } from '../../types/name';
 
 export const addToFavorites = (item: ArtItem) => {
   const items = JSON.parse(localStorage.getItem('items') || '[]');

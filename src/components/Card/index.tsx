@@ -6,7 +6,7 @@ import {
   addToFavorites,
   isFavoriteItem,
   removeFromFavorites,
-} from '../../helpers/favoritesFunctions';
+} from '../../helpers/favoritesFunctions/favoritesFunctions';
 import { ArtItem } from '../../types/name';
 import default_image from '../../assets/images/default.svg';
 

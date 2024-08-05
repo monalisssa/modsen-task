@@ -22,7 +22,7 @@ export const searchArtItemById = async (id: string) => {
   return data.data;
 };
 
-const fetchArtItemImage = async (id: number) => {
+export const fetchArtItemImage = async (id: number) => {
   const response = await fetch(`https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`);
   if (!response.ok) {
     return null;

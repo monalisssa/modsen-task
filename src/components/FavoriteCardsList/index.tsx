@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import FavoriteCard from '../FavoriteCard';
 import './style.css';
 import favorites from '../../assets/images/favorites.svg';
-import { getFavorites } from '../../helpers/favoritesFunctions';
+import { getFavorites } from '../../helpers/favoritesFunctions/favoritesFunctions';
 import { ArtItem } from '../../types/name';
 import { ArtItemsContext } from '../../context/ArtItemsProvider';
 import Loader from '../UI/Loader';
