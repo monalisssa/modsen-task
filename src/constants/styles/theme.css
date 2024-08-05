@@ -52,4 +52,8 @@
   --favorite-card-width: 350px;
   --favorite-card-height: 100px;
   --favorite-card-img-width: 70px;
+
+  --search-background-color: rgba(57, 57, 57, 0.05);
+
+  --error-color: #ff0000;
 }

@@ -23,7 +23,7 @@ main {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: var(--font-family), sans-serif;
+  font-family: LexendDecaBold, sans-serif;
 }
 
 .content-box {
@@ -89,4 +89,17 @@ main {
   grid-template-columns: repeat(3, minmax(100px, 1fr));
   justify-items: center;
   grid-gap: 24px;
+}
+
+.main__title {
+  text-align: center;
+  font-weight: bold;
+  margin: var(--main-title-margin);
+  color: var(--primary-color);
+  font-size: var(--font-size-60);
+  max-width: var(--main-title-width);
+}
+
+.main__title span {
+  color: var(--second-color);
 }
