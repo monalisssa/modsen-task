@@ -1,0 +1,14 @@
+.main__title img {
+  width: 35px;
+}
+
+.favorites__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--flex-gap-20);
+}
+
+.favorites-list--empty {
+  text-align: center;
+}
