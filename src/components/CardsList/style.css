@@ -1,0 +1,40 @@
+.cards-list {
+  display: flex;
+  justify-content: center;
+  min-height: var(--cards-list-width);
+  gap: var(--flex-gap-30);
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    gap: var(--flex-gap-80);
+  }
+}
+.pagination__button {
+  padding: 5px 10px;
+  border-radius: 10%;
+  border: none;
+  font-family: var(--font-family), sans-serif;
+}
+
+.pagination__button.active {
+  background-color: var(--second-color);
+  color: #fff;
+}
+
+.pages-box {
+  display: flex;
+  align-items: center;
+  gap: var(--flex-gap-10);
+}
+
+.pagination__arrow {
+  background-color: initial;
+  font-size: var(--font-size-30);
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--flex-gap-80);
+}

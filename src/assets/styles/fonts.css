@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter.ttf');
+  src:
+    local('Inter'),
+    url('../fonts/Inter.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LexendDeca';
+  src: url('../fonts/LexendDeca.ttf');
+  src:
+    local('LexendDeca'),
+    url('../fonts/LexendDeca.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LexendDecaBold';
+  src: url('../fonts/LexendDecaBold.ttf');
+  src:
+    local('LexendDecaBold'),
+    url('../fonts/LexendDecaBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

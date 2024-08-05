@@ -1,0 +1,25 @@
+.sort-box__list {
+  display: flex;
+  gap: var(--flex-gap-15);
+}
+.sort-box__list li {
+  display: flex;
+  align-items: center;
+  gap: var(--flex-gap-5);
+}
+.sort-box__list span {
+  font-size: var(--font-size-12);
+}
+.sort-box {
+  display: flex;
+  gap: var(--flex-gap-50);
+}
+
+.sort-box__title {
+  color: var(--highlight-color);
+}
+
+.sort-box__button {
+  background-color: inherit;
+  border: none;
+}

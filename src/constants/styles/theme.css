@@ -1,0 +1,59 @@
+:root {
+  --primary-color: #343333;
+  --highlight-color: #e0a449;
+  --second-color: #f17900;
+  --box-width: 70%;
+  --background-color: #fafafa;
+  --box-margin: 80px 0;
+  --font-family: LexendDeca;
+  --header-font-family: Inter;
+  --line-height-20: 20px;
+  --line-height-25: 25px;
+
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+  --font-size-23: 23px;
+  --font-size-12: 12px;
+  --font-size-15: 15px;
+  --font-size-30: 30px;
+  --font-size-60: 60px;
+
+  --box-padding: 20px 0;
+
+  --card-width: 300px;
+  --card-height: 400px;
+  --card-padding: 15px;
+  --card-background: #fff;
+
+  --button-width: 50px;
+  --button-height: 50px;
+  --button-background-color: #f9f9f9;
+
+  --main-title-width: 600px;
+  --main-title-margin: 50px 0;
+
+  --flex-gap-20: 20px;
+  --flex-gap-50: 50px;
+  --flex-gap-80: 80px;
+  --flex-gap-5: 5px;
+  --flex-gap-30: 30px;
+  --flex-gap-10: 10px;
+  --flex-gap-15: 15px;
+
+  --loader-width: 50px;
+  --loader-height: 50px;
+  --loader-border: 5px solid #ccc;
+
+  --cards-list-width: 400px;
+
+  --padding-20: 20px;
+  --padding-10: 10px;
+
+  --favorite-card-width: 350px;
+  --favorite-card-height: 100px;
+  --favorite-card-img-width: 70px;
+
+  --search-background-color: rgba(57, 57, 57, 0.05);
+
+  --error-color: #ff0000;
+}
