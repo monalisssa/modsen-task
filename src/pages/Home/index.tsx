@@ -4,7 +4,7 @@ import ExtraCardsList from '../../components/ExtraCardsList';
 import SearchField from '../../components/SearchField';
 import { fetchArtItems } from '../../api/fetchItems';
 import { ArtItem } from '../../types/name';
-import { sortItems } from '../../helpers/sortFunction';
+import { sortItems } from '../../helpers/sortItems/sortFunction';
 import { ArtItemsContext } from '../../context/ArtItemsProvider';
 import Loader from '../../components/UI/Loader';
 import Header from '../../components/Header';

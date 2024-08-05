@@ -7,9 +7,10 @@ import {
   addToFavorites,
   isFavoriteItem,
   removeFromFavorites,
-} from '../../helpers/favoritesFunctions';
+} from '../../helpers/favoritesFunctions/favoritesFunctions';
 
 const CardDetails = ({ item }: { item: ArtItem }) => {
+  console.log(item);
   const [isFavorite, setIsFavorite] = useState(isFavoriteItem(item.id));
   const handleClickButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();

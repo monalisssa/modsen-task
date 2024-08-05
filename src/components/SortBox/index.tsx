@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
-import { sortItems } from '../../helpers/sortFunction';
+import { sortItems } from '../../helpers/sortItems/sortFunction';
 import { SortBoxInterface } from './types';
 
 const SortBox: React.FC<SortBoxInterface> = ({ items, setItems }) => {
