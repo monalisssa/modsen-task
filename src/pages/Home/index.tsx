@@ -11,6 +11,7 @@ import Loader from '../../components/UI/Loader';
 const Home = () => {
   const { artItems, setArtItems, loading, setLoading } = useContext(ArtItemsContext);
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchItems, setSearchItems] = useState([]);
 
   const extraItems = useMemo(() => {
     return artItems.slice(-9); // Получаем последние 9 элементов из artItems
@@ -21,7 +22,7 @@ const Home = () => {
       setLoading(true);
       fetchArtItems(searchTerm).then((data: ArtItem[]) => {
         setLoading(false);
-        setArtItems(sortItems(data, 'title'));
+        setSearchItems(sortItems(data, 'title'));
       });
     }
   }, [searchTerm]);
@@ -31,6 +32,7 @@ const Home = () => {
     fetchArtItems().then((data: ArtItem[]) => {
       setLoading(false);
       setArtItems(data);
+      setSearchItems(data);
     });
   }, []);
 
@@ -46,10 +48,7 @@ const Home = () => {
           <Loader />
         ) : (
           <>
-            <CardsList
-              artItems={artItems.filter((item: ArtItem) => !extraItems.includes(item))}
-              setArtItems={setArtItems}
-            />
+            <CardsList artItems={searchItems} setArtItems={setArtItems} />
             <ExtraCardsList artItems={extraItems} />
           </>
         )}

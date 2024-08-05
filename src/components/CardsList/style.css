@@ -20,7 +20,7 @@
   color: #fff;
 }
 
-.pages-box {
+.cards-container__pages-box {
   display: flex;
   align-items: center;
   gap: var(--flex-gap-10);
@@ -37,4 +37,12 @@
   justify-content: center;
   align-items: center;
   gap: var(--flex-gap-80);
+}
+
+.cards-container__cards-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap-20);
+  justify-content: center;
+  align-items: center;
 }

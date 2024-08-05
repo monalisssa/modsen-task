@@ -56,4 +56,9 @@
   --search-background-color: rgba(57, 57, 57, 0.05);
 
   --error-color: #ff0000;
+
+  --card-info-width: 400px;
+  --card-info-height: 480px;
+  --card-info-width-media: 200px;
+  --card-info-height-media: 280px;
 }

@@ -1,13 +1,20 @@
 import React from 'react';
 import favorites from '../../assets/images/favorites.svg';
 import './style.css';
+import { useNavigate } from 'react-router-dom';
 import { FavoriteCardInterface } from './types';
+import default_image from '../../assets/images/default.svg';
 
 const FavoriteCard: React.FC<FavoriteCardInterface> = ({ item }) => {
+  const navigate = useNavigate();
+  const handleNavigateToDetails = () => {
+    navigate(`/details/${item.id}`);
+  };
+  console.log(item.image);
   return (
-    <div className="favorite-card">
+    <div className="favorite-card" onClick={handleNavigateToDetails}>
       <div className="favorite-card__content">
-        <img src={item.image} alt="art" />
+        {item.image ? <img src={item.image} alt="art" /> : <img src={default_image} alt="art" />}
         <div className="card__description">
           <div>
             <h3 className="card__title">

@@ -9,7 +9,6 @@ const SortBox: React.FC<SortBoxInterface> = ({ items, setItems }) => {
   const handleSortItems = (field: string, currentType: string) => {
     const newType = currentType === 'asc' ? 'desc' : 'asc';
     const sortedItems = sortItems(items, field, newType);
-    console.log(sortedItems);
     setItems(sortedItems);
     setSortType({ ...sortType, [field]: newType });
   };
