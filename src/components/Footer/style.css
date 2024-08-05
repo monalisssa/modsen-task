@@ -1,0 +1,16 @@
+footer {
+  margin-top: auto;
+  background: var(--footer-background);
+  font-family: var(--header-font-family), sans-serif;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: var(--box-padding);
+  color: var(--primary-color);
+}
+
+.footer__content {
+  width: var(--box-width);
+  display: flex;
+  justify-content: space-between;
+}

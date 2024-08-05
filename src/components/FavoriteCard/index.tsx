@@ -8,6 +8,7 @@ import {
   removeFromFavorites,
 } from '../../helpers/favoritesFunctions';
 import { FavoriteCardInterface } from './types';
+import default_image from '../../assets/images/default.svg';
 
 const FavoriteCard: React.FC<FavoriteCardInterface> = ({ item, updateFavorites }) => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const FavoriteCard: React.FC<FavoriteCardInterface> = ({ item, updateFavorites }
     if (isFavorite) {
       removeFromFavorites(item.id);
       setIsFavorite(false);
-      if (path === 'favorites') updateFavorites();
+      if (path === '/favorites') updateFavorites();
     } else {
       addToFavorites(item);
       setIsFavorite(true);
@@ -31,7 +32,7 @@ const FavoriteCard: React.FC<FavoriteCardInterface> = ({ item, updateFavorites }
   return (
     <div className="favorite-card" onClick={handleNavigateToDetails}>
       <div className="favorite-card__content">
-        <img src={item.image} alt="art" />
+        {item.image ? <img src={item.image} alt="art" /> : <img src={default_image} alt="art" />}
         <div className="card__description">
           <div>
             <h3 className="card__title">

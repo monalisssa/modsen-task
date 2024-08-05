@@ -5,6 +5,9 @@ import { ArtItem } from '../../types/name';
 import { ArtItemsContext } from '../../context/ArtItemsProvider';
 import { searchArtItemById } from '../../api/fetchItems';
 import Loader from '../../components/UI/Loader';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+
 const Details = () => {
   const { artItems, setLoading, loading } = useContext(ArtItemsContext);
   const { id = '' } = useParams();
@@ -19,7 +22,9 @@ const Details = () => {
   }, [artItems, id]);
   return (
     <>
+      <Header />
       <main>{loading ? <Loader /> : <>{currentItem && <CardDetails item={currentItem} />}</>}</main>
+      <Footer />
     </>
   );
 };

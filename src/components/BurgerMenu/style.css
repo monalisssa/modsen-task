@@ -1,0 +1,53 @@
+@keyframes slideInX {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--burger-menu-width);
+  height: 100%;
+  padding: var(--burger-menu-paddung);
+  background-color: var(--primary-color);
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-name: slideInX;
+  z-index: 1;
+}
+
+.burger-menu__button {
+  background-color: transparent;
+  display: none;
+  @media screen and (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.burger-menu__button img {
+  width: var(--burger-menu-button-width);
+}
+
+.menu__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap-20);
+  align-items: start;
+  justify-content: center;
+}
+
+.menu__links img {
+  width: var(--burger-menu-links-img-width);
+  height: var(--burger-menu-links-img-height);
+}

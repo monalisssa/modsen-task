@@ -3,12 +3,17 @@
   --highlight-color: #e0a449;
   --second-color: #f17900;
   --box-width: 70%;
-  --background-color: #fafafa;
   --box-margin: 80px 0;
+  --background-color: #fafafa;
   --font-family: LexendDeca;
   --header-font-family: Inter;
   --line-height-20: 20px;
   --line-height-25: 25px;
+
+  --header-background: linear-gradient(90deg, #343333 38.05%, #484848 69.22%, #282828 98.98%);
+  --header-color-text: #fff;
+
+  --footer-background: #fff;
 
   --font-size-14: 14px;
   --font-size-16: 16px;
@@ -59,9 +64,12 @@
 
   --card-info-width: 400px;
   --card-info-height: 480px;
-  --card-info-width-media: 200px;
+  --card-info-width-media: 300px;
   --card-info-height-media: 280px;
 
-  --notification-width: 300px;
-  --notification-height: 50px;
+  --burger-menu-width: 60%;
+  --burger-menu-paddung: 25px;
+  --burger-menu-button-width: 50%;
+  --burger-menu-links-img-width: 20px;
+  --burger-menu-links-img-height: 20px;
 }

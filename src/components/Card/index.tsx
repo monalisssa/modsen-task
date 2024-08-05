@@ -8,6 +8,7 @@ import {
   removeFromFavorites,
 } from '../../helpers/favoritesFunctions';
 import { ArtItem } from '../../types/name';
+import default_image from '../../assets/images/default.svg';
 
 const Card = ({ item }: { item: ArtItem }) => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Card = ({ item }: { item: ArtItem }) => {
 
   return (
     <div className="card" onClick={handleNavigateToDetails}>
-      <img src={item.image} alt="art" />
+      {item.image ? <img src={item.image} alt="art" /> : <img src={default_image} alt="art" />}
       <div className="card__content">
         <div className="card__description">
           <div>
