@@ -7,6 +7,8 @@ import { ArtItem } from '../../types/name';
 import { sortItems } from '../../helpers/sortFunction';
 import { ArtItemsContext } from '../../context/ArtItemsProvider';
 import Loader from '../../components/UI/Loader';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const Home = () => {
   const { artItems, setArtItems, loading, setLoading } = useContext(ArtItemsContext);
@@ -42,6 +44,7 @@ const Home = () => {
 
   return (
     <>
+      <Header />
       <main>
         <SearchField handleChangeSearchTerm={handleChangeSearchValue} />
         {loading ? (
@@ -53,6 +56,7 @@ const Home = () => {
           </>
         )}
       </main>
+      <Footer />
     </>
   );
 };

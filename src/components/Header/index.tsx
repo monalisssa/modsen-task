@@ -2,12 +2,12 @@ import React, { useContext, useRef } from 'react';
 import logo from '../../assets/images/logo.svg';
 import favorites from '../../assets/images/favorites.svg';
 import { Link, useLocation } from 'react-router-dom';
-import BurgerMenu from '../BurgerMenu';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import home from '../../assets/images/home.svg';
 import menu from '../../assets/images/menu.svg';
 import './style.css';
 import { MenuContext } from '../../context/NavProvider';
+import BurgerMenu from '../BurgerMenu';
 
 const Header: React.FC = () => {
   const location = useLocation();

@@ -11,4 +11,5 @@
 
 .favorites-list--empty {
   text-align: center;
+  color: var(--primary-color);
 }
