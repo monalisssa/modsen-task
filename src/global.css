@@ -83,3 +83,10 @@ main {
   justify-content: space-between;
   gap: 15px;
 }
+
+.favorites-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  justify-items: center;
+  grid-gap: 24px;
+}

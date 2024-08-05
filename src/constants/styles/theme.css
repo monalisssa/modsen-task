@@ -48,4 +48,8 @@
 
   --padding-20: 20px;
   --padding-10: 10px;
+
+  --favorite-card-width: 350px;
+  --favorite-card-height: 100px;
+  --favorite-card-img-width: 70px;
 }
