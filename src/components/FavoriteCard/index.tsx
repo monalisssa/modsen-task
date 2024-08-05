@@ -1,20 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import favorites from '../../assets/images/favorites.svg';
 import './style.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  addToFavorites,
+  isFavoriteItem,
+  removeFromFavorites,
+} from '../../helpers/favoritesFunctions';
 import { FavoriteCardInterface } from './types';
-import default_image from '../../assets/images/default.svg';
 
-const FavoriteCard: React.FC<FavoriteCardInterface> = ({ item }) => {
+const FavoriteCard: React.FC<FavoriteCardInterface> = ({ item, updateFavorites }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const handleNavigateToDetails = () => {
     navigate(`/details/${item.id}`);
   };
-  console.log(item.image);
+  const path = location.pathname;
+  const [isFavorite, setIsFavorite] = useState(isFavoriteItem(item.id));
+  const handleClickButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    if (isFavorite) {
+      removeFromFavorites(item.id);
+      setIsFavorite(false);
+      if (path === 'favorites') updateFavorites();
+    } else {
+      addToFavorites(item);
+      setIsFavorite(true);
+    }
+  };
   return (
     <div className="favorite-card" onClick={handleNavigateToDetails}>
       <div className="favorite-card__content">
-        {item.image ? <img src={item.image} alt="art" /> : <img src={default_image} alt="art" />}
+        <img src={item.image} alt="art" />
         <div className="card__description">
           <div>
             <h3 className="card__title">
@@ -33,7 +50,7 @@ const FavoriteCard: React.FC<FavoriteCardInterface> = ({ item }) => {
           <span className="card__status">Public</span>
         </div>
       </div>
-      <button className={`card__button`}>
+      <button className={`card__button ${isFavorite ? 'active' : ''}`} onClick={handleClickButton}>
         <img src={favorites} alt="favorites" />
       </button>
     </div>

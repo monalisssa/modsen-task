@@ -61,4 +61,7 @@
   --card-info-height: 480px;
   --card-info-width-media: 200px;
   --card-info-height-media: 280px;
+
+  --notification-width: 300px;
+  --notification-height: 50px;
 }
