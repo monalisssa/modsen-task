@@ -2,6 +2,7 @@
   position: relative;
   width: var(--card-width);
   height: var(--card-height);
+  cursor: pointer;
 }
 
 .card > img {

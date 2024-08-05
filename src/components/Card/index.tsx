@@ -1,13 +1,19 @@
 import React from 'react';
 import './style.css';
 import favorites from '../../assets/images/favorites.svg';
-
+import { useNavigate } from 'react-router-dom';
 import { ArtItem } from '../../types/name';
-
+import default_image from '../../assets/images/default.svg';
 const Card = ({ item }: { item: ArtItem }) => {
+  const navigate = useNavigate();
+
+  const handleNavigateToDetails = () => {
+    navigate(`/details/${item.id}`);
+  };
+
   return (
-    <div className="card">
-      <img src={item.image} alt="art" />
+    <div className="card" onClick={handleNavigateToDetails}>
+      {item.image ? <img src={item.image} alt="art" /> : <img src={default_image} alt="art" />}
       <div className="card__content">
         <div className="card__description">
           <div>

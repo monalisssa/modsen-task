@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Card from '../Card';
 import './style.css';
-import Loader from '../UI/Loader';
-import { CardsListInterface } from './types';
 import usePagination from '../../hooks/usePagination';
+import Loader from '../UI/Loader';
+import SortBox from '../SortBox';
+import { ArtItem } from '../../types/name';
+import { CardsListInterface } from './types';
 
-const CardsList: React.FC<CardsListInterface> = ({ artItems }) => {
+const CardsList: React.FC<CardsListInterface> = ({ artItems, setArtItems }) => {
   const itemsPerPage = 2;
   const numbers = useMemo(
     () =>
@@ -49,6 +51,11 @@ const CardsList: React.FC<CardsListInterface> = ({ artItems }) => {
     setActiveButton(1);
   }, [artItems]);
 
+  const updateArtItems = (updatedItems: ArtItem[]) => {
+    setArtItems(updatedItems);
+    setActiveButton(1);
+    goToPage(1);
+  };
   return (
     <div className="content-box">
       <div className="title">
@@ -56,15 +63,18 @@ const CardsList: React.FC<CardsListInterface> = ({ artItems }) => {
         <h4 className="title-large">Our special gallery</h4>
       </div>
       <div className="cards-container">
-        <div className="cards-list">
-          {isPageChanging ? (
-            <Loader />
-          ) : (
-            paginatedItems.map((item: any) => <Card item={item} key={item.id} />)
-          )}
+        <div className="cards-container__cards-box">
+          <SortBox items={artItems} setItems={updateArtItems} />
+          <div className="cards-list">
+            {isPageChanging ? (
+              <Loader />
+            ) : (
+              paginatedItems.map((item: any) => <Card item={item} key={item.id} />)
+            )}
+          </div>
         </div>
 
-        <div className="pages-box">
+        <div className="cards-container__pages-box">
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 1}
