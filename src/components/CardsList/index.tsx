@@ -1,13 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Card from '../Card';
 import './style.css';
-import usePagination from '../../hooks/usePagination';
 import Loader from '../UI/Loader';
-import SortBox from '../SortBox';
-import { ArtItem } from '../../types/name';
 import { CardsListInterface } from './types';
+import usePagination from '../../hooks/usePagination';
 
-const CardsList: React.FC<CardsListInterface> = ({ artItems, setArtItems }) => {
+const CardsList: React.FC<CardsListInterface> = ({ artItems }) => {
   const itemsPerPage = 2;
   const numbers = useMemo(
     () =>
@@ -51,11 +49,6 @@ const CardsList: React.FC<CardsListInterface> = ({ artItems, setArtItems }) => {
     setActiveButton(1);
   }, [artItems]);
 
-  const updateArtItems = (updatedItems: ArtItem[]) => {
-    setArtItems(updatedItems);
-    setActiveButton(1);
-    goToPage(1);
-  };
   return (
     <div className="content-box">
       <div className="title">
@@ -63,44 +56,44 @@ const CardsList: React.FC<CardsListInterface> = ({ artItems, setArtItems }) => {
         <h4 className="title-large">Our special gallery</h4>
       </div>
       <div className="cards-container">
-        <div className="cards-container__cards-box">
-          <SortBox items={artItems} setItems={updateArtItems} />
-          <div className="cards-list">
-            {isPageChanging ? (
-              <Loader />
-            ) : (
-              paginatedItems.map((item: any) => <Card item={item} key={item.id} />)
-            )}
-          </div>
+        <div className="cards-list">
+          {isPageChanging ? (
+            <Loader />
+          ) : (
+            paginatedItems.map((item: any) => <Card item={item} key={item.id} />)
+          )}
+          {paginatedItems.length === 0 && <p>Nothing found</p>}
         </div>
 
-        <div className="cards-container__pages-box">
-          <button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            className="pagination__arrow"
-          >
-            &#8249;
-          </button>
-          {numbers.map((number) => (
+        {paginatedItems.length !== 0 && (
+          <div className="pages-box">
             <button
-              key={number}
-              className={
-                activeButton !== number ? 'pagination__button' : 'pagination__button active'
-              }
-              onClick={() => handleSetActiveButton(number)}
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className="pagination__arrow"
             >
-              {number}
+              &#8249;
             </button>
-          ))}
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            className="pagination__arrow"
-          >
-            &#8250;
-          </button>
-        </div>
+            {numbers.map((number) => (
+              <button
+                key={number}
+                className={
+                  activeButton !== number ? 'pagination__button' : 'pagination__button active'
+                }
+                onClick={() => handleSetActiveButton(number)}
+              >
+                {number}
+              </button>
+            ))}
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className="pagination__arrow"
+            >
+              &#8250;
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
