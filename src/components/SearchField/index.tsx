@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import search from '../../assets/images/search.svg';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SearchFieldProps, searchSchema } from './types';
-import useDebounce from '../../hooks/useDebounce';
 
 const SearchField: React.FC<SearchFieldProps> = ({ handleChangeSearchTerm }) => {
-  const onSubmit = (values: any) => console.log(values);
-  const [searchValue, setSearchValue] = useState('');
-  const { register, handleSubmit, watch, formState } = useForm({
+  const [canShowError, setCanShowError] = useState(true);
+  const [isSearchDirty, setIsSearchDirty] = useState(false);
+  const { control, handleSubmit, formState } = useForm({
     mode: 'onChange',
     resolver: yupResolver(searchSchema),
   });
-  const debouncedSearchTerm = useDebounce(searchValue, 1000);
+  const { isSubmitting } = formState;
 
-  const searchTerm = watch('searchTerm');
+  const onSubmit = (values: any) => {
+    handleChangeSearchTerm(values.searchTerm);
+  };
 
-  const isValid = formState.isValid;
-  useEffect(() => {
-    if (isValid) setSearchValue(searchTerm);
-  }, [formState]);
-
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      handleChangeSearchTerm(searchValue);
+  const onSearchChange = () => {
+    if (!isSearchDirty && !formState.errors.searchTerm?.message) {
+      setCanShowError(false);
+    } else if (isSearchDirty && !canShowError) {
+      setTimeout(() => setCanShowError(true), 2000);
     }
-  }, [debouncedSearchTerm]);
+
+    if (!isSearchDirty) {
+      setIsSearchDirty(true);
+    }
+  };
   return (
     <div className="search-wrapper">
       <div className="main__title">
@@ -34,15 +36,27 @@ const SearchField: React.FC<SearchFieldProps> = ({ handleChangeSearchTerm }) => 
         Let's Find Some <span>Art</span> Here!
       </div>
       <form className="search-box" onSubmit={handleSubmit(onSubmit)}>
-        <input
-          className="search-input"
-          placeholder="Search art, artist, work..."
-          {...register('searchTerm')}
+        <Controller
+          control={control}
+          name="searchTerm"
+          render={({ field }) => (
+            <input
+              className="search-input"
+              placeholder="Search art, artist, work..."
+              {...field}
+              onChange={(e) => {
+                field.onChange(e.target.value);
+                onSearchChange();
+              }}
+            />
+          )}
         />
-        <img src={search} alt={search} />
+        <button type="submit" disabled={isSubmitting}>
+          <img src={search} alt={search} />
+        </button>
       </form>
       <p className="search-input__errors">
-        {formState.errors.searchTerm && formState.errors.searchTerm.message}
+        {formState.errors.searchTerm && canShowError && formState.errors.searchTerm.message}
       </p>
     </div>
   );
