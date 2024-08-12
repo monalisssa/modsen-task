@@ -1,32 +1,27 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './style.css';
-import search from '../../assets/images/search.svg';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { SearchFieldProps, searchSchema } from './types';
+import { searchSchema } from './validation';
+import useDebounce from '../../hooks/useDebounce';
+import { imageIcons } from '../../constants/imageIcons';
 
-const SearchField: React.FC<SearchFieldProps> = ({ handleChangeSearchTerm }) => {
-  const [canShowError, setCanShowError] = useState(true);
-  const [isSearchDirty, setIsSearchDirty] = useState(false);
-  const { control, handleSubmit, formState } = useForm({
+const SearchField = ({ changeSearchTerm }: { changeSearchTerm: (searchTerm: string) => void }) => {
+  const [searchValue, setSearchValue] = useState('');
+  const debouncedSearchTerm = useDebounce(searchValue, 1000);
+
+  const { control, trigger, getValues, formState } = useForm({
     mode: 'onChange',
     resolver: yupResolver(searchSchema),
   });
-  const { isSubmitting } = formState;
+  useEffect(() => {
+    changeSearchTerm(debouncedSearchTerm);
+  }, [debouncedSearchTerm]);
 
-  const onSubmit = (values: any) => {
-    handleChangeSearchTerm(values.searchTerm);
-  };
-
-  const onSearchChange = () => {
-    if (!isSearchDirty && !formState.errors.searchTerm?.message) {
-      setCanShowError(false);
-    } else if (isSearchDirty && !canShowError) {
-      setTimeout(() => setCanShowError(true), 2000);
-    }
-
-    if (!isSearchDirty) {
-      setIsSearchDirty(true);
+  const onSearchChange = async () => {
+    const isValid = await trigger('searchTerm');
+    if (isValid) {
+      setSearchValue(getValues('searchTerm'));
     }
   };
   return (
@@ -35,7 +30,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ handleChangeSearchTerm }) => 
         {/* eslint-disable-next-line react/no-unescaped-entities */}
         Let's Find Some <span>Art</span> Here!
       </div>
-      <form className="search-box" onSubmit={handleSubmit(onSubmit)}>
+      <form className="search-box">
         <Controller
           control={control}
           name="searchTerm"
@@ -44,19 +39,19 @@ const SearchField: React.FC<SearchFieldProps> = ({ handleChangeSearchTerm }) => 
               className="search-input"
               placeholder="Search art, artist, work..."
               {...field}
-              onChange={(e) => {
+              onChange={async (e) => {
                 field.onChange(e.target.value);
-                onSearchChange();
+                await onSearchChange();
               }}
             />
           )}
         />
-        <button type="submit" disabled={isSubmitting}>
-          <img src={search} alt={search} />
+        <button type="submit">
+          <img src={imageIcons.search} alt="search" />
         </button>
       </form>
       <p className="search-input__errors">
-        {formState.errors.searchTerm && canShowError && formState.errors.searchTerm.message}
+        {formState.errors.searchTerm?.message && formState.errors.searchTerm.message}
       </p>
     </div>
   );
