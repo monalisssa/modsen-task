@@ -1,24 +1,17 @@
-import React, { useContext, useRef } from 'react';
-import logo from '../../assets/images/logo.svg';
-import favorites from '../../assets/images/favorites.svg';
-import { Link, useLocation } from 'react-router-dom';
+import { memo, useContext, useRef } from 'react';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
-import home from '../../assets/images/home.svg';
-import menu from '../../assets/images/menu.svg';
 import './style.css';
 import { MenuContext } from '../../context/NavProvider';
-import BurgerMenu from '../BurgerMenu';
+import NavLinks from '../NavLinks';
+import { imageIcons } from '../../constants/imageIcons';
 
-const Header: React.FC = () => {
-  const location = useLocation();
+const Header = () => {
   const node = useRef<HTMLDivElement>(null);
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
   const handleOpenBurgerMenu = () => {
     toggleMenuMode();
   };
-
-  const isHomePage = location.pathname === '/';
 
   useOnClickOutside(node, () => {
     if (isMenuOpen) {
@@ -30,30 +23,20 @@ const Header: React.FC = () => {
     <header ref={node}>
       <div className="header__content">
         <div className="logo">
-          <img src={logo} alt="logo" />
+          <img src={imageIcons.logo} alt="logo" />
           Museum of <span>Art</span>
         </div>
 
-        <div className="nav-links">
-          {!isHomePage && (
-            <Link className="logo" to={'/'}>
-              <img src={home} alt="home" />
-              Home
-            </Link>
-          )}
-          <Link className="logo" to={'/favorites'}>
-            <img src={favorites} alt="favorites" />
-            Your favorites
-          </Link>
-        </div>
+        <NavLinks />
         <button className="burger-menu__button" onClick={handleOpenBurgerMenu}>
-          <img src={menu} alt="burger menu" />
+          <img src={imageIcons.menu} alt="burger menu" />
         </button>
-
-        {isMenuOpen && <BurgerMenu closeMenu={handleOpenBurgerMenu} />}
+        <div className="burger-menu">
+          <NavLinks onLinkClick={handleOpenBurgerMenu} />
+        </div>
       </div>
     </header>
   );
 };
 
-export default Header;
+export default memo(Header);
