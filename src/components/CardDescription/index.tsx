@@ -1,11 +1,11 @@
-import { ArtItem } from '../../types/name';
+import { ArtItem } from '@/types/name';
 
 const CardDescription = ({ item }: { item: ArtItem }) => {
   return (
     <div className="card__description">
       <div>
         <h3 className="card__title">
-          {item.title.length > 20 ? `${item.title.substring(0, 20)}...` : item.title}
+          {item.title.length > 15 ? `${item.title.substring(0, 15)}...` : item.title}
         </h3>
         {item.artist_title ? (
           <p className="card__artist">

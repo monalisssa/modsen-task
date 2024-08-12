@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import './style.css';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { searchSchema } from './validation';
-import useDebounce from '../../hooks/useDebounce';
-import { imageIcons } from '../../constants/imageIcons';
+import useDebounce from '@hooks/useDebounce';
+import { imageIcons } from '@constants/imageIcons';
 
 const SearchField = ({ changeSearchTerm }: { changeSearchTerm: (searchTerm: string) => void }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -57,4 +57,4 @@ const SearchField = ({ changeSearchTerm }: { changeSearchTerm: (searchTerm: stri
   );
 };
 
-export default SearchField;
+export default memo(SearchField);

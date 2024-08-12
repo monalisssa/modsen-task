@@ -1,17 +1,17 @@
-import { memo, useContext, useRef } from 'react';
-import useOnClickOutside from '../../hooks/useOnClickOutside';
+import { memo, useCallback, useContext, useRef } from 'react';
+import useOnClickOutside from '@hooks/useOnClickOutside';
 import './style.css';
-import { MenuContext } from '../../context/NavProvider';
-import NavLinks from '../NavLinks';
-import { imageIcons } from '../../constants/imageIcons';
+import { MenuContext } from '@context/NavProvider';
+import NavLinks from '@components/NavLinks';
+import { imageIcons } from '@constants/imageIcons';
 
 const Header = () => {
   const node = useRef<HTMLDivElement>(null);
   const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
 
-  const handleOpenBurgerMenu = () => {
+  const handleOpenBurgerMenu = useCallback(() => {
     toggleMenuMode();
-  };
+  }, [toggleMenuMode]);
 
   useOnClickOutside(node, () => {
     if (isMenuOpen) {

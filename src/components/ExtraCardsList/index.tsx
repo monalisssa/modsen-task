@@ -1,10 +1,10 @@
-import { memo, useEffect, useState } from 'react';
-import FavoriteCard from '../FavoriteCard';
-import Loader from '../UI/Loader';
-import useFetch from '../../hooks/useFetch';
-import { fetchArtItems } from '../../api/fetchItems';
-import { ArtItem } from '../../types/name';
-import { useFavorites } from '../../hooks/useFavorites';
+import { memo, useCallback, useEffect, useState } from 'react';
+import FavoriteCard from '@components/FavoriteCard';
+import Loader from '@components/UI/Loader';
+import useFetch from '@hooks/useFetch';
+import { fetchArtItems } from '@api/fetchItems';
+import { ArtItem } from '@/types/name';
+import { useFavorites } from '@hooks/useFavorites';
 
 const ExtraCardsList = () => {
   const [extraItems, setExtraItems] = useState<ArtItem[]>([]);
@@ -17,9 +17,12 @@ const ExtraCardsList = () => {
     }
   }, [items]);
 
-  const handleFavoriteUpdate = (item: ArtItem) => {
-    updateFavorites(item);
-  };
+  const handleFavoriteUpdate = useCallback(
+    (item: ArtItem) => {
+      updateFavorites(item);
+    },
+    [items],
+  );
 
   return (
     <div className="content-box">

@@ -1,13 +1,15 @@
 import Card from '../Card';
 import './style.css';
-import Loader from '../UI/Loader';
-import usePagination from '../../hooks/usePagination';
-import SortBox from '../SortBox';
-import { ArtItem, CardsListProps } from '../../types/name';
-import { useFavorites } from '../../hooks/useFavorites';
-import Pagination from '../Pagination';
+import Loader from '@components/UI/Loader';
+import usePagination from '@hooks/usePagination';
+import SortBox from '@components/SortBox';
+import { ArtItem, CardsListProps } from '@/types/name';
+import { useFavorites } from '@hooks/useFavorites';
+import Pagination from '@components/Pagination';
+import { FC, memo, useCallback } from 'react';
+import { sortItems } from '@helpers/sortFunction';
 
-const CardsList: React.FC<CardsListProps> = ({ artItems, setArtItems, loading }) => {
+const CardsList: FC<CardsListProps> = ({ artItems, setArtItems, loading }) => {
   const { updateFavorites, isFavorite } = useFavorites();
   const {
     currentPage,
@@ -22,15 +24,22 @@ const CardsList: React.FC<CardsListProps> = ({ artItems, setArtItems, loading })
 
   const paginatedItems = getPageItems(artItems);
 
-  const updateArtItems = (updatedItems: ArtItem[]) => {
-    setArtItems(updatedItems);
-    goToPage(1);
-  };
+  const handleSortItems = useCallback(
+    (field: string, newType: 'desc' | 'asc') => {
+      setArtItems(sortItems(artItems, field, newType));
+      goToPage(1);
+    },
+    [artItems],
+  );
 
-  const handleFavoriteUpdate = (item: ArtItem) => {
-    updateFavorites(item);
-  };
+  const handleFavoriteUpdate = useCallback(
+    (item: ArtItem) => {
+      updateFavorites(item);
+    },
+    [artItems],
+  );
 
+  console.log('List render');
   return (
     <div className="content-box">
       <div className="title">
@@ -45,7 +54,7 @@ const CardsList: React.FC<CardsListProps> = ({ artItems, setArtItems, loading })
             {artItems.length > 0 ? (
               <>
                 <div className="cards-container__cards-box">
-                  <SortBox items={artItems} setItems={updateArtItems} />
+                  <SortBox handleSortItems={handleSortItems} />
                   <div className="cards-list">
                     {pageLoading ? (
                       <Loader />
@@ -80,4 +89,4 @@ const CardsList: React.FC<CardsListProps> = ({ artItems, setArtItems, loading })
   );
 };
 
-export default CardsList;
+export default memo(CardsList);

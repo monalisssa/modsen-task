@@ -1,4 +1,4 @@
-import { PaginationProps } from '../../types/name';
+import { PaginationProps } from '@/types/name';
 import { FC } from 'react';
 
 const Pagination: FC<PaginationProps> = ({

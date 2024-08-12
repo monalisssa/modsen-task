@@ -1,5 +1,5 @@
 import './style.css';
-import { imageIcons } from '../../constants/imageIcons';
+import { imageIcons } from '@constants/imageIcons';
 import { memo } from 'react';
 const Footer = () => {
   return (

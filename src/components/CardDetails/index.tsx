@@ -1,7 +1,8 @@
 import './style.css';
-import { ArtItem } from '../../types/name';
-import { useFavorites } from '../../hooks/useFavorites';
-import { imageIcons } from '../../constants/imageIcons';
+import { ArtItem } from '@/types/name';
+import { useFavorites } from '@hooks/useFavorites';
+import { imageIcons } from '@constants/imageIcons';
+import { memo } from 'react';
 
 const CardDetails = ({ item }: { item: ArtItem }) => {
   const { isFavorite, updateFavorites } = useFavorites();
@@ -9,6 +10,7 @@ const CardDetails = ({ item }: { item: ArtItem }) => {
   const handleClickButton = () => {
     updateFavorites(item);
   };
+
   return (
     <div className="content-box">
       <div className="card-info">
@@ -62,4 +64,4 @@ const CardDetails = ({ item }: { item: ArtItem }) => {
   );
 };
 
-export default CardDetails;
+export default memo(CardDetails);

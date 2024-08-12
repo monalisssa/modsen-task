@@ -1,10 +1,10 @@
 import './style.css';
-import { ArtItem } from '../../types/name';
-import Loader from '../UI/Loader';
-import favoritesIcon from '../../assets/images/favorites.svg';
-import FavoriteCard from '../FavoriteCard';
-import { useFavorites } from '../../hooks/useFavorites';
-import { useTimer } from '../../hooks/useTimer';
+import { ArtItem } from '@/types/name';
+import Loader from '@components/UI/Loader';
+import FavoriteCard from '@components/FavoriteCard';
+import { useFavorites } from '@hooks/useFavorites';
+import { useTimer } from '@hooks/useTimer';
+import { imageIcons } from '@constants/imageIcons';
 const FavoriteCardsList = () => {
   const { favorites, loading, updateFavorites, isFavorite, setLoading } = useFavorites();
   const handleFavoriteUpdate = (item: ArtItem) => {
@@ -17,7 +17,7 @@ const FavoriteCardsList = () => {
       <div className="main__title">
         Here Are Your
         <div className="favorites__title">
-          <img src={favoritesIcon} alt="favorires" />
+          <img src={imageIcons.favorites} alt="favorires" />
           <span>Favorites</span>
         </div>
       </div>
