@@ -2,5 +2,6 @@ import { ArtItem } from '../../types/name';
 
 export interface FavoriteCardInterface {
   item: ArtItem;
-  updateFavorites?: () => void;
+  handleFavoriteUpdate?: (item: ArtItem) => void;
+  isFavorite: boolean;
 }

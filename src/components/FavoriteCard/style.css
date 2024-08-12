@@ -19,3 +19,15 @@
   height: 100%;
   width: var(--favorite-card-img-width);
 }
+
+@media all and (min-width: 300px) and (max-width: 650px) {
+  .favorite-card {
+    width: 300px;
+  }
+  .favorite-card__content {
+    width: 85%;
+  }
+  .favorite-card .card__title {
+    font-size: var(--font-size-12);
+  }
+}
