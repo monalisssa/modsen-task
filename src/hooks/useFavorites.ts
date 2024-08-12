@@ -1,6 +1,6 @@
-import { localStorageManager } from '../utils/LocalStorageManager';
+import { localStorageManager } from '@utils/LocalStorageManager';
 import { useState } from 'react';
-import { ArtItem } from '../types/name';
+import { ArtItem } from '@/types/name';
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<ArtItem[]>(localStorageManager.getFavorites());

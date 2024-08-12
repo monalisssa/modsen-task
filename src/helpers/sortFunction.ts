@@ -1,4 +1,4 @@
-import { ArtItem } from '../types/name';
+import { ArtItem } from '@/types/name';
 
 export const sortItems = (items: ArtItem[], type: string, order: 'asc' | 'desc' = 'asc') => {
   const compare = (a: string, b: string, order: 'asc' | 'desc') => {

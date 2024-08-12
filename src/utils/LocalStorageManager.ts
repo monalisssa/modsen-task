@@ -1,4 +1,4 @@
-import { ArtItem } from '../types/name';
+import { ArtItem } from '@/types/name';
 
 class LocalStorageManager {
   private readonly keyName: string;

@@ -1,6 +1,6 @@
-import Header from '../../components/Header';
-import FavoriteCardsList from '../../components/FavoriteCardsList';
-import Footer from '../../components/Footer';
+import Header from '@components/Header';
+import FavoriteCardsList from '@components/FavoriteCardsList';
+import Footer from '@components/Footer';
 const Favorites = () => {
   return (
     <>

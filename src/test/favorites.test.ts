@@ -1,5 +1,5 @@
-import { ArtItem } from '../types/name';
-import { localStorageManager } from '../utils/LocalStorageManager';
+import { ArtItem } from '@/types/name';
+import { localStorageManager } from '@utils/LocalStorageManager';
 
 describe('LocalStorageManager', () => {
   afterEach(() => {

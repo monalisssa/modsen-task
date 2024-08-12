@@ -1,4 +1,4 @@
-import { searchArtItemById } from '../api/fetchItems';
+import { searchArtItemById } from '@api/fetchItems';
 
 test('Valid data', async () => {
   const artItem = await searchArtItemById('136999');

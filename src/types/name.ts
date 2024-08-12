@@ -32,6 +32,5 @@ export interface PaginationProps {
 }
 
 export interface SortBoxProps {
-  items: ArtItem[];
-  setItems: (artItems: ArtItem[]) => void;
+  handleSortItems: (field: string, newType: 'asc' | 'desc') => void;
 }
