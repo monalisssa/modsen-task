@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import './style.css';
-import { sortItems } from '../../helpers/sortItems/sortFunction';
-import { SortBoxInterface } from './types';
+import { sortItems } from '../../helpers/sortFunction';
+import { SortBoxProps } from '../../types/name';
 
-const SortBox: React.FC<SortBoxInterface> = ({ items, setItems }) => {
+const SortBox: FC<SortBoxProps> = ({ items, setItems }) => {
   const [sortType, setSortType] = useState({ title: 'asc', artist: 'desc' });
 
   const handleSortItems = (field: string, currentType: string) => {
     const newType = currentType === 'asc' ? 'desc' : 'asc';
-    const sortedItems = sortItems(items, field, newType);
-    setItems(sortedItems);
+    setItems(sortItems(items, field, newType));
     setSortType({ ...sortType, [field]: newType });
   };
 

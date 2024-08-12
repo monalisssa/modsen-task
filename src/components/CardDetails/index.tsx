@@ -1,37 +1,28 @@
-import React, { useState } from 'react';
 import './style.css';
 import { ArtItem } from '../../types/name';
-import favorites from '../../assets/images/favorites.svg';
-import default_image from '../../assets/images/default.svg';
-import {
-  addToFavorites,
-  isFavoriteItem,
-  removeFromFavorites,
-} from '../../helpers/favoritesFunctions/favoritesFunctions';
+import { useFavorites } from '../../hooks/useFavorites';
+import { imageIcons } from '../../constants/imageIcons';
 
 const CardDetails = ({ item }: { item: ArtItem }) => {
-  console.log(item);
-  const [isFavorite, setIsFavorite] = useState(isFavoriteItem(item.id));
-  const handleClickButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    if (isFavorite) {
-      removeFromFavorites(item.id);
-      setIsFavorite(false);
-    } else {
-      addToFavorites(item);
-      setIsFavorite(true);
-    }
+  const { isFavorite, updateFavorites } = useFavorites();
+
+  const handleClickButton = () => {
+    updateFavorites(item);
   };
   return (
     <div className="content-box">
       <div className="card-info">
         <div className="image-box">
-          {item.image ? <img src={item.image} alt="art" /> : <img src={default_image} alt="art" />}
+          {item.image ? (
+            <img src={item.image} alt="art" />
+          ) : (
+            <img src={imageIcons.default} alt="art" />
+          )}
           <button
-            className={`card__button ${isFavorite ? 'active' : ''}`}
+            className={`card__button ${isFavorite(item) ? 'active' : ''}`}
             onClick={handleClickButton}
           >
-            <img src={favorites} alt="favorites" />
+            <img src={imageIcons.favorites} alt="favorites" />
           </button>
         </div>
         <div className="card-info__description">
