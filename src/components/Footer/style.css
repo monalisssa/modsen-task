@@ -10,7 +10,13 @@ footer {
 }
 
 .footer__content {
-  width: var(--box-width);
+  min-width: var(--box-width);
   display: flex;
   justify-content: space-between;
+}
+
+.footer__content > img {
+  @media screen and (max-width: 480px) {
+    width: 100px;
+  }
 }

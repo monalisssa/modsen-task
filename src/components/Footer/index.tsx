@@ -1,19 +1,19 @@
-import React from 'react';
-import logo from '../../assets/images/logo.svg';
 import './style.css';
+import { imageIcons } from '../../constants/imageIcons';
+import { memo } from 'react';
 const Footer = () => {
   return (
     <footer>
       <div className="footer__content">
         <div className="logo">
-          <img src={logo} alt="logo" />
+          <img src={imageIcons.logo} alt="logo" />
           Museum of <span>Art</span>
         </div>
 
-        <div className="logo">Modsen</div>
+        <img src={imageIcons.modsen} alt="modsen_logo" />
       </div>
     </footer>
   );
 };
 
-export default Footer;
+export default memo(Footer);

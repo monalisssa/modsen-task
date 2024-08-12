@@ -10,7 +10,7 @@
 .loader {
   width: var(--loader-width);
   height: var(--loader-height);
-  margin: 0 auto;
+  margin: auto;
   border: var(--loader-border);
   border-bottom-color: transparent;
   border-radius: 50%;
