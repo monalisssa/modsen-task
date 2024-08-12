@@ -1,5 +1,5 @@
-import { sortItems } from './sortFunction';
-import { ArtItem } from '../../types/name';
+import { sortItems } from '../helpers/sortFunction';
+import { ArtItem } from '../types/name';
 
 describe('sortItems', () => {
   const mockArtItems: ArtItem[] = [
