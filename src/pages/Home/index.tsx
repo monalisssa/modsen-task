@@ -1,42 +1,23 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CardsList from '../../components/CardsList';
 import ExtraCardsList from '../../components/ExtraCardsList';
 import SearchField from '../../components/SearchField';
 import { fetchArtItems } from '../../api/fetchItems';
-import { ArtItem } from '../../types/name';
-import { sortItems } from '../../helpers/sortItems/sortFunction';
-import { ArtItemsContext } from '../../context/ArtItemsProvider';
-import Loader from '../../components/UI/Loader';
+import { sortItems } from '../../helpers/sortFunction';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import useFetch from '../../hooks/useFetch';
 
 const Home = () => {
-  const { artItems, setArtItems, loading, setLoading } = useContext(ArtItemsContext);
+  const [artItems, setArtItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchItems, setSearchItems] = useState([]);
-
-  const extraItems = useMemo(() => {
-    return artItems.slice(-9); // Получаем последние 9 элементов из artItems
-  }, [artItems]);
+  const [loading, items] = useFetch(() => fetchArtItems(searchTerm), [searchTerm]);
 
   useEffect(() => {
-    if (searchTerm) {
-      setLoading(true);
-      fetchArtItems(searchTerm).then((data: ArtItem[]) => {
-        setLoading(false);
-        setSearchItems(sortItems(data, 'title'));
-      });
+    if (items) {
+      setArtItems(sortItems(items, 'title'));
     }
-  }, [searchTerm]);
-
-  useEffect(() => {
-    setLoading(true);
-    fetchArtItems().then((data: ArtItem[]) => {
-      setLoading(false);
-      setArtItems(data);
-      setSearchItems(data);
-    });
-  }, []);
+  }, [items]);
 
   const handleChangeSearchValue = (q: string) => {
     setSearchTerm(q);
@@ -46,15 +27,9 @@ const Home = () => {
     <>
       <Header />
       <main>
-        <SearchField handleChangeSearchTerm={handleChangeSearchValue} />
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            <CardsList artItems={searchItems} setArtItems={setArtItems} />
-            <ExtraCardsList artItems={extraItems} />
-          </>
-        )}
+        <SearchField changeSearchTerm={handleChangeSearchValue} />
+        <CardsList artItems={artItems} setArtItems={setArtItems} loading={loading} />
+        <ExtraCardsList />
       </main>
       <Footer />
     </>
