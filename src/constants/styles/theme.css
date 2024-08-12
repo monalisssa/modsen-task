@@ -1,19 +1,28 @@
 :root {
-  --primary-color: #343333;
-  --highlight-color: #e0a449;
-  --second-color: #f17900;
+  --primary-color: rgb(52, 51, 51);
+  --highlight-color: rgb(224, 164, 73);
+  --second-color: rgb(241, 121, 0);
+  --header-background: linear-gradient(
+    90deg,
+    rgb(52, 51, 51) 38.05%,
+    rgb(72, 72, 72) 69.22%,
+    rgb(40, 40, 40) 98.98%
+  );
+  --header-color-text: rgb(255, 255, 255);
+  --background-color: rgb(250, 250, 250);
+  --footer-background: rgb(255, 255, 255);
+  --error-color: rgb(255, 0, 0);
+  --button-background-color: rgb(249, 249, 249);
+  --card-background: rgb(255, 255, 255);
+  --loader-border: 5px solid rgb(204, 204, 204);
+  --search-background-color: rgba(57, 57, 57, 0.05);
+
   --box-width: 70%;
   --box-margin: 80px 0;
-  --background-color: #fafafa;
   --font-family: LexendDeca;
   --header-font-family: Inter;
   --line-height-20: 20px;
   --line-height-25: 25px;
-
-  --header-background: linear-gradient(90deg, #343333 38.05%, #484848 69.22%, #282828 98.98%);
-  --header-color-text: #fff;
-
-  --footer-background: #fff;
 
   --font-size-14: 14px;
   --font-size-16: 16px;
@@ -28,11 +37,9 @@
   --card-width: 300px;
   --card-height: 400px;
   --card-padding: 15px;
-  --card-background: #fff;
 
   --button-width: 50px;
   --button-height: 50px;
-  --button-background-color: #f9f9f9;
 
   --main-title-width: 600px;
   --main-title-margin: 50px 0;
@@ -47,24 +54,19 @@
 
   --loader-width: 50px;
   --loader-height: 50px;
-  --loader-border: 5px solid #ccc;
 
   --cards-list-width: 400px;
 
   --padding-20: 20px;
   --padding-10: 10px;
 
-  --favorite-card-width: 350px;
+  --favorite-card-width: 340px;
   --favorite-card-height: 100px;
   --favorite-card-img-width: 70px;
 
-  --search-background-color: rgba(57, 57, 57, 0.05);
-
-  --error-color: #ff0000;
-
   --card-info-width: 400px;
   --card-info-height: 480px;
-  --card-info-width-media: 300px;
+  --card-info-width-media: 100%;
   --card-info-height-media: 280px;
 
   --burger-menu-width: 60%;
@@ -72,4 +74,6 @@
   --burger-menu-button-width: 50%;
   --burger-menu-links-img-width: 20px;
   --burger-menu-links-img-height: 20px;
+
+  --box-width-media: 90%;
 }

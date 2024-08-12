@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--header-color-text);
+}
+
+body {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo span {
+  color: var(--highlight-color);
+  font-weight: bold;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  font-family: var(--font-family), sans-serif;
+  min-height: 85vh;
+}
+
+.content-box {
+  width: var(--box-width);
+  margin: var(--box-margin);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.title {
+  text-align: center;
+  line-height: var(--line-height-25);
+}
+
+.card__button {
+  width: var(--button-width);
+  height: var(--button-height);
+  border-radius: 50%;
+  border: none;
+  background-color: var(--button-background-color);
+}
+
+.card__button.active {
+  background-color: rgba(251, 215, 178, 0.3);
+}
+
+.title .title-small {
+  color: var(--highlight-color);
+  font-size: var(--font-size-15);
+}
+
+.title .title-large {
+  color: var(--primary-color);
+  font-size: var(--font-size-30);
+}
+
+.card__title {
+  font-weight: bolder;
+  font-size: var(--font-size-14);
+}
+
+.card__artist {
+  color: var(--highlight-color);
+  font-size: var(--font-size-12);
+}
+
+.card__status {
+  font-size: var(--font-size-12);
+  font-weight: bolder;
+}
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.favorites-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  grid-gap: 24px;
+}
+
+.favorites-list > .loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 540px) {
+  .favorites-list {
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+  }
+  .content-box {
+    max-width: var(--box-width-media);
+  }
+}
+
+@media all and (min-width: 550px) and (max-width: 1180px) {
+  .favorites-list {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+  }
+}
+
+.main__title {
+  text-align: center;
+  font-weight: bold;
+  margin: var(--main-title-margin);
+  color: var(--primary-color);
+  font-size: var(--font-size-60);
+  max-width: var(--main-title-width);
+}
+
+.main__title span {
+  color: var(--highlight-color);
+}
