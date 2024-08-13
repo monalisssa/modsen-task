@@ -19,9 +19,9 @@ const NavProvider = ({ children }: NavStateProps) => {
 
   const toggleMenuMode = () => {
     setIsMenuOpen(!isMenuOpen);
-    document.body?.classList.toggle('menu-open', !isMenuOpen);
     document.querySelector('.burger-menu')?.classList.toggle('show', !isMenuOpen);
     document.querySelector('.burger-menu')?.classList.toggle('hide', isMenuOpen);
+    document.body?.classList.toggle('menu-open', !isMenuOpen);
   };
 
   return (
