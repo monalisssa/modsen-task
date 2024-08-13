@@ -13,4 +13,10 @@ module.exports = {
       '@hooks': path.resolve(__dirname, 'src/hooks'),
     },
   },
+
+  jest: {
+    moduleNameMapper: {
+      '^@/(.*)$': ['<rootDir>/src/$1'],
+    },
+  },
 };

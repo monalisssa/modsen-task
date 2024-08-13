@@ -1,9 +1,8 @@
-import { ArtItem } from '@/types/name';
-import { localStorageManager } from '@utils/LocalStorageManager';
+import { ArtItem } from '../types/name';
+import { localStorageManager } from '../utils/LocalStorageManager';
 
 describe('LocalStorageManager', () => {
   afterEach(() => {
-    // Clear the localStorage before each test
     localStorage.clear();
   });
 
