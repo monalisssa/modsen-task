@@ -1,5 +1,5 @@
 .favorite-card {
-  background-color: var(--card-background);
+  background-color: var(--secondary-color);
   display: flex;
   justify-content: space-between;
   width: var(--favorite-card-width);
@@ -22,10 +22,10 @@
 
 @media all and (min-width: 300px) and (max-width: 650px) {
   .favorite-card {
-    width: 300px;
+    width: var(--favorite-card-media-width);
   }
   .favorite-card__content {
-    width: 85%;
+    width: var(--box-width-85);
   }
   .favorite-card .card__title {
     font-size: var(--font-size-12);

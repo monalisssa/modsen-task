@@ -1,4 +1,5 @@
 import { ArtItem } from '@/types/name';
+import './style.css';
 
 const CardDescription = ({ item }: { item: ArtItem }) => {
   return (

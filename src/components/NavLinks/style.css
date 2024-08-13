@@ -7,6 +7,6 @@
 }
 
 .menu__links img {
-  width: var(--burger-menu-links-img-width);
-  height: var(--burger-menu-links-img-height);
+  width: var(--burger-menu-img-size);
+  height: var(--burger-menu-img-size);
 }

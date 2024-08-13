@@ -6,7 +6,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco jest",
+    "test": "jest",
     "prepare": "husky",
     "lint": "eslint \"src/**/*.{js,ts,tsx}\"",
     "format": "prettier --write \"src/**/*.{js,ts,tsx,scss}\"",

@@ -1,5 +1,6 @@
 import { PaginationProps } from '@/types/name';
 import { FC } from 'react';
+import './style.css';
 
 const Pagination: FC<PaginationProps> = ({
   numbers,

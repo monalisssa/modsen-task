@@ -8,8 +8,8 @@
 }
 
 .loader {
-  width: var(--loader-width);
-  height: var(--loader-height);
+  width: var(--widget-width);
+  height: var(--widget-height);
   margin: auto;
   border: var(--loader-border);
   border-bottom-color: transparent;

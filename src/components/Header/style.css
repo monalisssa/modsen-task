@@ -1,7 +1,7 @@
 header {
   background: var(--header-background);
   font-family: var(--header-font-family), sans-serif;
-  color: var(--header-color-text);
+  color: var(--secondary-color);
   width: 100%;
   padding: var(--box-padding);
   display: flex;
@@ -46,8 +46,8 @@ header {
   }
 
   .nav-links img {
-    width: var(--burger-menu-links-img-width);
-    height: var(--burger-menu-links-img-height);
+    width: var(--burger-menu-img-size);
+    height: var(--burger-menu-img-size);
   }
 }
 
@@ -75,7 +75,7 @@ header {
   right: 0;
   height: 100%;
   width: var(--burger-menu-width);
-  padding: var(--burger-menu-paddung);
+  padding: var(--padding-25);
   background-color: var(--primary-color);
   z-index: 1;
   display: none;
@@ -92,10 +92,6 @@ header {
 .burger-menu.hide {
   animation-name: slideOutX;
   display: block;
-}
-
-.burger-menu--closed {
-  display: none;
 }
 
 body.menu-open {
