@@ -1,0 +1,22 @@
+.pagination__button {
+  padding: 5px 10px;
+  border-radius: 10%;
+  border: none;
+  font-family: var(--font-family), sans-serif;
+}
+
+.pagination__button.active {
+  background-color: var(--secondary-highlight-color);
+  color: var(--secondary-color);
+}
+
+.cards-container__pages-box {
+  display: flex;
+  align-items: center;
+  gap: var(--flex-gap-10);
+}
+
+.pagination__arrow {
+  background-color: initial;
+  font-size: var(--font-size-30);
+}

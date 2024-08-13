@@ -1,34 +1,12 @@
 .cards-list {
   display: flex;
   justify-content: center;
-  min-height: var(--cards-list-width);
+  min-height: var(--box-width-400);
   gap: var(--flex-gap-30);
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 540px) {
     flex-direction: column;
     gap: var(--flex-gap-80);
   }
-}
-.pagination__button {
-  padding: 5px 10px;
-  border-radius: 10%;
-  border: none;
-  font-family: var(--font-family), sans-serif;
-}
-
-.pagination__button.active {
-  background-color: var(--second-color);
-  color: #fff;
-}
-
-.cards-container__pages-box {
-  display: flex;
-  align-items: center;
-  gap: var(--flex-gap-10);
-}
-
-.pagination__arrow {
-  background-color: initial;
-  font-size: var(--font-size-30);
 }
 
 .cards-container {

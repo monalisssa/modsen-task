@@ -1,0 +1,21 @@
+.card__title {
+  font-weight: bolder;
+  font-size: var(--font-size-14);
+}
+
+.card__artist {
+  color: var(--highlight-color);
+  font-size: var(--font-size-12);
+}
+
+.card__status {
+  font-size: var(--font-size-12);
+  font-weight: bolder;
+}
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--flex-gap-15);
+}

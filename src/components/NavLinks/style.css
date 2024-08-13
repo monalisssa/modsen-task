@@ -1,0 +1,12 @@
+.menu__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flex-gap-20);
+  align-items: start;
+  justify-content: center;
+}
+
+.menu__links img {
+  width: var(--burger-menu-img-size);
+  height: var(--burger-menu-img-size);
+}

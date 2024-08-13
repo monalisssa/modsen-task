@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useState } from 'react';
 
 interface MenuContextType {
   isMenuOpen: boolean;
@@ -15,15 +15,13 @@ interface NavStateProps {
 }
 
 const NavProvider = ({ children }: NavStateProps) => {
-  const [isMenuOpen, toggleMenu] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenuMode = () => {
-    toggleMenu(!isMenuOpen);
-    if (!isMenuOpen) {
-      document.body.classList.add('menu-open');
-    } else {
-      document.body.classList.remove('menu-open');
-    }
+    setIsMenuOpen(!isMenuOpen);
+    document.body?.classList.toggle('menu-open', !isMenuOpen);
+    document.querySelector('.burger-menu')?.classList.toggle('show', !isMenuOpen);
+    document.querySelector('.burger-menu')?.classList.toggle('hide', isMenuOpen);
   };
 
   return (

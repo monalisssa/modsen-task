@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import { FC, memo, useState } from 'react';
 import './style.css';
-import { sortItems } from '../../helpers/sortItems/sortFunction';
-import { SortBoxInterface } from './types';
+import { SortBoxProps } from '@/types/name';
 
-const SortBox: React.FC<SortBoxInterface> = ({ items, setItems }) => {
+const SortBox: FC<SortBoxProps> = ({ handleSortItems }) => {
   const [sortType, setSortType] = useState({ title: 'asc', artist: 'desc' });
 
-  const handleSortItems = (field: string, currentType: string) => {
+  const handleClickSortItems = (field: string, currentType: string) => {
     const newType = currentType === 'asc' ? 'desc' : 'asc';
-    const sortedItems = sortItems(items, field, newType);
-    setItems(sortedItems);
+    handleSortItems(field, newType);
     setSortType({ ...sortType, [field]: newType });
   };
 
@@ -20,7 +18,7 @@ const SortBox: React.FC<SortBoxInterface> = ({ items, setItems }) => {
         <li>
           Title
           <button
-            onClick={() => handleSortItems('title', sortType.title)}
+            onClick={() => handleClickSortItems('title', sortType.title)}
             className="sort-box__button"
           >
             {sortType.title === 'asc' ? '▲' : '▼'}
@@ -29,7 +27,7 @@ const SortBox: React.FC<SortBoxInterface> = ({ items, setItems }) => {
         <li>
           Artist
           <button
-            onClick={() => handleSortItems('artist', sortType.artist)}
+            onClick={() => handleClickSortItems('artist', sortType.artist)}
             className="sort-box__button"
           >
             {sortType.artist === 'asc' ? '▲' : '▼'}
@@ -40,4 +38,4 @@ const SortBox: React.FC<SortBoxInterface> = ({ items, setItems }) => {
   );
 };
 
-export default SortBox;
+export default memo(SortBox);

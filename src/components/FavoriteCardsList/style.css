@@ -1,5 +1,5 @@
 .main__title img {
-  width: 35px;
+  width: var(--main-title-img);
 }
 
 .favorites__title {

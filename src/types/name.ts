@@ -9,3 +9,28 @@ export interface ArtItem {
   is_public_domain?: boolean;
   image?: string;
 }
+
+export interface CardProps {
+  item: ArtItem;
+  handleFavoriteUpdate?: (item: ArtItem) => void;
+  isFavorite: boolean;
+}
+
+export interface CardsListProps {
+  artItems: ArtItem[];
+  setArtItems: (newArtItems: ArtItem[]) => void;
+  loading: boolean;
+}
+
+export interface PaginationProps {
+  numbers: number[];
+  prevPage: () => void;
+  currentPage: number;
+  totalPages: number;
+  nextPage: () => void;
+  goToPage: (page: number) => void;
+}
+
+export interface SortBoxProps {
+  handleSortItems: (field: string, newType: 'asc' | 'desc') => void;
+}

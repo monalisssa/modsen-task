@@ -1,35 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
-import FavoriteCard from '../FavoriteCard';
 import './style.css';
-import favorites from '../../assets/images/favorites.svg';
-import { getFavorites } from '../../helpers/favoritesFunctions/favoritesFunctions';
-import { ArtItem } from '../../types/name';
-import { ArtItemsContext } from '../../context/ArtItemsProvider';
-import Loader from '../UI/Loader';
+import { ArtItem } from '@/types/name';
+import Loader from '@components/UI/Loader';
+import FavoriteCard from '@components/FavoriteCard';
+import { useFavorites } from '@hooks/useFavorites';
+import { useTimer } from '@hooks/useTimer';
+import { imageIcons } from '@constants/imageIcons';
 const FavoriteCardsList = () => {
-  const { loading, setLoading } = useContext(ArtItemsContext);
-  const [favoriteItems, setFavoriteItems] = useState(getFavorites());
-  const [isUpdate, setIsUpdate] = useState(false);
-
-  const handleClickRemove = () => {
-    setIsUpdate(true);
+  const { favorites, loading, updateFavorites, isFavorite, setLoading } = useFavorites();
+  const handleFavoriteUpdate = (item: ArtItem) => {
+    updateFavorites(item);
   };
 
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setFavoriteItems(getFavorites());
-      setIsUpdate(false);
-      setLoading(false);
-    }, 500);
-  }, [isUpdate]);
-
+  useTimer(() => setLoading(false), 500);
   return (
     <>
       <div className="main__title">
         Here Are Your
         <div className="favorites__title">
-          <img src={favorites} />
+          <img src={imageIcons.favorites} alt="favorires" />
           <span>Favorites</span>
         </div>
       </div>
@@ -40,17 +28,19 @@ const FavoriteCardsList = () => {
         </div>
         {loading ? (
           <Loader />
+        ) : favorites.length !== 0 ? (
+          <div className="favorites-list">
+            {favorites.map((item: ArtItem) => (
+              <FavoriteCard
+                item={item}
+                key={item.id}
+                handleFavoriteUpdate={handleFavoriteUpdate}
+                isFavorite={isFavorite(item)}
+              />
+            ))}
+          </div>
         ) : (
-          <>
-            <div className="favorites-list">
-              {favoriteItems.map((item: ArtItem) => (
-                <FavoriteCard item={item} key={item.id} updateFavorites={handleClickRemove} />
-              ))}
-            </div>
-            {favoriteItems.length === 0 && (
-              <h3 className="favorites-list--empty">Favorites List is empty!</h3>
-            )}
-          </>
+          <h3 className="favorites-list--empty">Favorites List is empty!</h3>
         )}
       </div>
     </>

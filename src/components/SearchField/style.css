@@ -14,7 +14,7 @@
 }
 .search-box {
   position: relative;
-  width: 90%;
+  width: var(--box-width-90);
 }
 .search-box img {
   position: absolute;
@@ -24,7 +24,7 @@
 }
 
 .search-input__errors {
-  width: 85%;
+  width: var(--box-width-85);
   font-size: var(--font-size-12);
   color: var(--error-color);
   font-family: var(--font-family), cursive;

@@ -1,20 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
 import Card from '../Card';
 import './style.css';
-import Loader from '../UI/Loader';
-import { CardsListInterface } from './types';
-import usePagination from '../../hooks/usePagination';
+import Loader from '@components/UI/Loader';
+import usePagination from '@hooks/usePagination';
+import SortBox from '@components/SortBox';
+import { ArtItem, CardsListProps } from '@/types/name';
+import { useFavorites } from '@hooks/useFavorites';
+import Pagination from '@components/Pagination';
+import { FC, memo, useCallback } from 'react';
+import { sortItems } from '@helpers/sortFunction';
 
-const CardsList: React.FC<CardsListInterface> = ({ artItems }) => {
-  const itemsPerPage = 2;
-  const numbers = useMemo(
-    () =>
-      Array.from(
-        { length: Math.min(Math.ceil(artItems.length / itemsPerPage), 7) },
-        (_, index) => index + 1,
-      ),
-    [artItems.length, itemsPerPage],
-  );
+const CardsList: FC<CardsListProps> = ({ artItems, setArtItems, loading }) => {
+  const { updateFavorites, isFavorite } = useFavorites();
   const {
     currentPage,
     totalPages,
@@ -22,33 +18,28 @@ const CardsList: React.FC<CardsListInterface> = ({ artItems }) => {
     prevPage,
     goToPage,
     getPageItems,
-    isPageChanging,
-    resetPagination,
-  } = usePagination(artItems.length, itemsPerPage);
+    pageLoading,
+    numbers,
+  } = usePagination(artItems.length);
 
   const paginatedItems = getPageItems(artItems);
-  const [activeButton, setActiveButton] = useState(1);
 
-  const handleSetActiveButton = (number: number) => {
-    goToPage(number);
-    setActiveButton(number);
-  };
+  const handleSortItems = useCallback(
+    (field: string, newType: 'desc' | 'asc') => {
+      setArtItems(sortItems(artItems, field, newType));
+      goToPage(1);
+    },
+    [artItems],
+  );
 
-  const handleNextPage = () => {
-    nextPage();
-    setActiveButton(currentPage + 1);
-  };
+  const handleFavoriteUpdate = useCallback(
+    (item: ArtItem) => {
+      updateFavorites(item);
+    },
+    [artItems],
+  );
 
-  const handlePrevPage = () => {
-    prevPage();
-    setActiveButton(currentPage - 1);
-  };
-
-  useEffect(() => {
-    resetPagination();
-    setActiveButton(1);
-  }, [artItems]);
-
+  console.log('List render');
   return (
     <div className="content-box">
       <div className="title">
@@ -56,46 +47,46 @@ const CardsList: React.FC<CardsListInterface> = ({ artItems }) => {
         <h4 className="title-large">Our special gallery</h4>
       </div>
       <div className="cards-container">
-        <div className="cards-list">
-          {isPageChanging ? (
-            <Loader />
-          ) : (
-            paginatedItems.map((item: any) => <Card item={item} key={item.id} />)
-          )}
-          {paginatedItems.length === 0 && <p>Nothing found</p>}
-        </div>
-
-        {paginatedItems.length !== 0 && (
-          <div className="pages-box">
-            <button
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-              className="pagination__arrow"
-            >
-              &#8249;
-            </button>
-            {numbers.map((number) => (
-              <button
-                key={number}
-                className={
-                  activeButton !== number ? 'pagination__button' : 'pagination__button active'
-                }
-                onClick={() => handleSetActiveButton(number)}
-              >
-                {number}
-              </button>
-            ))}
-            <button
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className="pagination__arrow"
-            >
-              &#8250;
-            </button>
-          </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {artItems.length > 0 ? (
+              <>
+                <div className="cards-container__cards-box">
+                  <SortBox handleSortItems={handleSortItems} />
+                  <div className="cards-list">
+                    {pageLoading ? (
+                      <Loader />
+                    ) : (
+                      paginatedItems.map((item: ArtItem) => (
+                        <Card
+                          item={item}
+                          key={item.id}
+                          handleFavoriteUpdate={handleFavoriteUpdate}
+                          isFavorite={isFavorite(item)}
+                        />
+                      ))
+                    )}
+                  </div>
+                </div>
+                <Pagination
+                  numbers={numbers}
+                  prevPage={prevPage}
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  nextPage={nextPage}
+                  goToPage={goToPage}
+                />
+              </>
+            ) : (
+              <p>No art items found.</p>
+            )}
+          </>
         )}
       </div>
     </div>
   );
 };
-export default CardsList;
+
+export default memo(CardsList);

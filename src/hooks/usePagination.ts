@@ -1,18 +1,25 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
-const usePagination = (totalItems: any, itemsPerPage: any) => {
+const usePagination = (totalItems: number, itemsPerPage: number = 2) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [isPageChanging, setIsPageChanging] = useState(false);
+  const [pageLoading, setPageLoading] = useState(false);
   const totalPages = Math.min(10, Math.ceil(totalItems / itemsPerPage));
 
-  console.log(totalPages);
+  const numbers = useMemo(
+    () =>
+      Array.from(
+        { length: Math.min(Math.ceil(totalItems / itemsPerPage), 7) },
+        (_, index) => index + 1,
+      ),
+    [totalItems, itemsPerPage],
+  );
 
   const changePage = (page: number) => {
-    setIsPageChanging(true);
+    setPageLoading(true);
     setCurrentPage(Math.max(1, Math.min(page, totalPages)));
     setTimeout(() => {
-      setIsPageChanging(false);
-    }, 500); // Пример задержки в 1 секунду для демонстрации
+      setPageLoading(false);
+    }, 500);
   };
 
   const nextPage = () => {
@@ -44,8 +51,9 @@ const usePagination = (totalItems: any, itemsPerPage: any) => {
     prevPage,
     goToPage,
     getPageItems,
-    isPageChanging,
+    pageLoading,
     resetPagination,
+    numbers,
   };
 };
 

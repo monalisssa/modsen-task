@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo, ReactNode } from 'react';
 type PropsType = {
   children?: ReactNode;
 };
@@ -11,7 +11,6 @@ type StateType = {
 
 export class ErrorBoundary extends Component<PropsType, StateType> {
   constructor(props: Readonly<PropsType>) {
-    console.log('constructor');
     super(props);
     this.state = { hasError: false, error: null, errorInfo: null };
   }
@@ -28,8 +27,6 @@ export class ErrorBoundary extends Component<PropsType, StateType> {
   }
 
   render() {
-    console.log('render');
-
     if (this.state.hasError) {
       return (
         <div className="error-wrapper">

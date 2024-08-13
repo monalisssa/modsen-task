@@ -1,9 +1,15 @@
-export const fetchArtItems = async (searchTerm?: string) => {
+import {
+  ARTWORK_ENDPOINT,
+  ARTWORK_IMAGE_ENDPOINT,
+  ARTWORK_QUERY_PARAMS,
+  ARTWORK_SEARCH_ENDPOINT,
+} from '../constants/apiUrls';
+
+export const fetchArtItems = async (searchTerm?: string, limit: number = 14) => {
   let url = '';
   if (searchTerm)
-    url = `https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&fields=id,title,artist_title,dimensions,credit_line,date_display,is_public_domain,image_id`;
-  else
-    url = `https://api.artic.edu/api/v1/artworks?fields=id,title,artist_title,dimensions,credit_line,date_display,is_public_domain,image_id&limit=23`;
+    url = `${ARTWORK_SEARCH_ENDPOINT}?q=${searchTerm}&${ARTWORK_QUERY_PARAMS}=${limit}`;
+  else url = `${ARTWORK_ENDPOINT}?${ARTWORK_QUERY_PARAMS}=${limit}`;
   const response = await fetch(url);
   const data = await response.json();
 
@@ -16,14 +22,14 @@ export const fetchArtItems = async (searchTerm?: string) => {
 };
 
 export const searchArtItemById = async (id: string) => {
-  const response = await fetch(`https://api.artic.edu/api/v1/artworks/${id}`);
+  const response = await fetch(`${ARTWORK_ENDPOINT}/${id}`);
   const data = await response.json();
   data.data.image = await fetchArtItemImage(data.data.image_id);
   return data.data;
 };
 
 export const fetchArtItemImage = async (id: number) => {
-  const response = await fetch(`https://www.artic.edu/iiif/2/${id}/full/843,/0/default.jpg`);
+  const response = await fetch(ARTWORK_IMAGE_ENDPOINT(id));
   if (!response.ok) {
     return null;
   }

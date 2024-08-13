@@ -1,21 +1,51 @@
-import React from 'react';
-import FavoriteCard from '../FavoriteCard';
-import { ExtraCardsListInterface } from './types';
+import { memo, useCallback, useEffect, useState } from 'react';
+import FavoriteCard from '@components/FavoriteCard';
+import Loader from '@components/UI/Loader';
+import useFetch from '@hooks/useFetch';
+import { fetchArtItems } from '@api/fetchItems';
+import { ArtItem } from '@/types/name';
+import { useFavorites } from '@hooks/useFavorites';
 
-const ExtraCardsList: React.FC<ExtraCardsListInterface> = ({ artItems }) => {
+const ExtraCardsList = () => {
+  const [extraItems, setExtraItems] = useState<ArtItem[]>([]);
+  const [loading, items] = useFetch(() => fetchArtItems('new', 9), []);
+  const { updateFavorites, isFavorite } = useFavorites();
+
+  useEffect(() => {
+    if (items) {
+      setExtraItems(items);
+    }
+  }, [items]);
+
+  const handleFavoriteUpdate = useCallback(
+    (item: ArtItem) => {
+      updateFavorites(item);
+    },
+    [items],
+  );
+
   return (
     <div className="content-box">
       <div className="title">
         <p className="title-small">Here some more</p>
         <h4 className="title-large">Other works for you</h4>
       </div>
-      <div className="favorites-list">
-        {artItems.map((item: any) => (
-          <FavoriteCard item={item} key={item.id} />
-        ))}
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="favorites-list">
+          {extraItems.map((item: ArtItem) => (
+            <FavoriteCard
+              item={item}
+              key={item.id}
+              handleFavoriteUpdate={handleFavoriteUpdate}
+              isFavorite={isFavorite(item)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-export default ExtraCardsList;
+export default memo(ExtraCardsList);
