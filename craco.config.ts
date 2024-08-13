@@ -11,6 +11,7 @@ module.exports = {
       '@context': path.resolve(__dirname, 'src/context'),
       '@helpers': path.resolve(__dirname, 'src/helpers'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
     },
   },
 
