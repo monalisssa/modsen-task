@@ -97,4 +97,5 @@ header {
 body.menu-open {
   position: fixed;
   overflow: hidden;
+  width: 100%;
 }
