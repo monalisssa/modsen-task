@@ -10,7 +10,7 @@ const Footer = () => {
           Museum of <span>Art</span>
         </div>
 
-        <img src={imageIcons.modsen} alt="modsen_logo" />
+        <p>Museam App</p>
       </div>
     </footer>
   );
